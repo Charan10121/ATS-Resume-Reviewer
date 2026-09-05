@@ -95,7 +95,7 @@ export const ResumeInput: React.FC<ResumeInputProps> = ({ onAnalyze, isLoading, 
   const loadSample = (sample: SampleResume) => {
     setSelectedSampleId(sample.id);
     setSelectedRole(sample.roleId);
-    setGithubUser(sample.githubUser);
+    setGithubUser('');
     setResumeText(sample.content);
     setUploadedFile(null);
     setInputTab('paste');
@@ -209,22 +209,22 @@ export const ResumeInput: React.FC<ResumeInputProps> = ({ onAnalyze, isLoading, 
           )}
         </div>
 
-        {/* Step 2: GitHub Profile Enrichment (HackerRank Feature) */}
+        {/* Step 2: GitHub Username (Optional) */}
         <div className="pt-6 border-t border-white/10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-3">
             <div>
-              <label className="text-xs font-black tracking-[0.25em] uppercase text-white/50 flex items-center gap-2.5">
+              <label htmlFor="github-username-input" className="text-xs font-black tracking-[0.25em] uppercase text-white/50 flex items-center gap-2.5">
                 <span className="w-5 h-5 bg-white text-black font-black text-[11px] flex items-center justify-center">2</span>
                 <span className="flex items-center gap-1.5">
                   <Github className="w-3.5 h-3.5" />
-                  GitHub Signal Enrichment
+                  GitHub Username
                 </span>
                 <span className="text-[9px] px-2 py-0.5 border border-white/20 text-white/60 rounded-full font-bold">
                   OPTIONAL
                 </span>
               </label>
               <p className="text-xs text-white/40 mt-0.5">
-                Automatically verify commits, public repos, and stars to substaniate OSS & project claims
+                Type your GitHub username to link public repositories and open source contributions from GitHub's public API.
               </p>
             </div>
           </div>
@@ -234,10 +234,23 @@ export const ResumeInput: React.FC<ResumeInputProps> = ({ onAnalyze, isLoading, 
               github.com/
             </div>
             <input
+              id="github-username-input"
+              name="github_username"
               type="text"
               value={githubUser}
               onChange={(e) => setGithubUser(e.target.value.replace(/^https?:\/\/github\.com\//, ''))}
               placeholder="username (e.g. torvalds)"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              data-form-type="other"
+              data-lpignore="true"
+              data-gramm="false"
+              data-enable-gramm="false"
+              data-disable-ai="true"
+              data-no-ai="true"
+              aria-autocomplete="none"
               className="w-full text-xs py-3 pl-28 pr-4 rounded-sm border border-white/20 bg-black/60 text-white placeholder-white/30 focus:outline-none focus:border-white font-mono transition-all"
             />
           </div>

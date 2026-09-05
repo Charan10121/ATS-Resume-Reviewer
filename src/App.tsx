@@ -8,7 +8,7 @@ import { AtsCompatibilityAudit } from './components/AtsCompatibilityAudit.tsx';
 import { BulletOptimizer } from './components/BulletOptimizer.tsx';
 import { RubricModal } from './components/RubricModal.tsx';
 import { HiringEvaluation } from './types.ts';
-import { AlertCircle, FileText, CheckCircle2 } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 
 export default function App() {
   const [evaluation, setEvaluation] = useState<HiringEvaluation | null>(null);
@@ -16,6 +16,7 @@ export default function App() {
   const [loadingStep, setLoadingStep] = useState<string>('');
   const [isRubricModalOpen, setIsRubricModalOpen] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
 
   const handleAnalyze = async (payload: {
     resumeText: string;
@@ -80,6 +81,13 @@ export default function App() {
   const handleReset = () => {
     setEvaluation(null);
     setErrorMessage(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleGoHome = () => {
+    setEvaluation(null);
+    setErrorMessage(null);
+    setIsLoading(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -160,7 +168,7 @@ ${evaluation.bulletImprovements.map((b, i) => `### ${i+1}. ${b.category}
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col font-sans selection:bg-white selection:text-black">
-      <Header onShowRubricModal={() => setIsRubricModalOpen(true)} />
+      <Header onShowRubricModal={() => setIsRubricModalOpen(true)} onHomeClick={handleGoHome} />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
@@ -172,7 +180,7 @@ ${evaluation.bulletImprovements.map((b, i) => `### ${i+1}. ${b.category}
               <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-emerald-400">
+                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-emerald-500">
                       HackerRank Scoring Model
                     </span>
                     <span className="text-white/20">•</span>
@@ -195,7 +203,7 @@ ${evaluation.bulletImprovements.map((b, i) => `### ${i+1}. ${b.category}
                   </div>
                   <div className="px-4 py-3 bg-white text-black rounded-sm">
                     <p className="text-[9px] font-black tracking-[0.25em] uppercase text-black/60">Pass Cutoff</p>
-                    <p className="text-sm font-black tracking-tight uppercase text-black">≥ 60 / 120 PTS</p>
+                    <p className="text-sm font-black tracking-tight uppercase">≥ 60 / 120 PTS</p>
                   </div>
                 </div>
               </div>
@@ -203,7 +211,7 @@ ${evaluation.bulletImprovements.map((b, i) => `### ${i+1}. ${b.category}
 
             {errorMessage && (
               <div className="mb-8 p-4 bg-white/5 border-l-4 border-rose-500 text-white text-xs flex items-center gap-3">
-                <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />
+                <AlertCircle className="w-5 h-5 text-rose-500 shrink-0" />
                 <span className="font-bold">{errorMessage}</span>
               </div>
             )}
@@ -236,26 +244,26 @@ ${evaluation.bulletImprovements.map((b, i) => `### ${i+1}. ${b.category}
             <BulletOptimizer bulletImprovements={evaluation.bulletImprovements} />
 
             {/* Bottom Floating/Fixed Action Bar */}
-            <div className="sticky bottom-4 z-30 p-4 rounded-sm bg-[#0A0A0A]/95 backdrop-blur-md border border-white/20 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="sticky bottom-4 z-30 p-4 rounded-sm bg-[#0A0A0A]/95 border border-white/20 shadow-2xl backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-baseline gap-3">
                 <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-white/50">Evaluation Target</span>
                 <span className="text-sm font-black tracking-tight uppercase text-white">
                   {evaluation.role.replace(/_/g, ' ')}
                 </span>
-                <span className="text-xs font-mono font-black text-emerald-400">
+                <span className="text-xs font-mono font-black text-emerald-500">
                   {evaluation.totalScore} / 120 PTS
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleExportMarkdown}
-                  className="px-4 py-2.5 text-xs font-bold tracking-[0.15em] uppercase rounded-sm bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all"
+                  className="px-4 py-2.5 text-xs font-bold tracking-[0.15em] uppercase rounded-sm bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all cursor-pointer"
                 >
                   Export Report (.md)
                 </button>
                 <button
                   onClick={handleReset}
-                  className="px-5 py-2.5 text-xs font-black tracking-[0.2em] uppercase rounded-sm bg-white text-black hover:invert transition-all"
+                  className="px-5 py-2.5 text-xs font-black tracking-[0.2em] uppercase rounded-sm bg-white text-black hover:invert transition-all cursor-pointer"
                 >
                   Review Another Resume
                 </button>
@@ -271,7 +279,7 @@ ${evaluation.bulletImprovements.map((b, i) => `### ${i+1}. ${b.category}
         onClose={() => setIsRubricModalOpen(false)}
       />
 
-      <footer className="border-t border-white/10 py-8 text-center text-xs text-white/40">
+      <footer className="border-t border-white/10 text-white/40 py-8 text-center text-xs">
         <p className="tracking-wide">
           Hiring Agent ATS Reviewer • Based on HackerRank / InterviewStreet's open-source hiring pipeline rubric (<a href="https://github.com/interviewstreet/hiring-agent" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">interviewstreet/hiring-agent</a>)
         </p>

@@ -14,7 +14,7 @@ export const SAMPLE_RESUMES: SampleResume[] = [
     name: 'Alex Rivera (Senior Backend / Distributed Systems)',
     title: 'Senior Backend Engineer • 6 Yrs Exp • High OSS & Scale',
     expectedScoreProfile: 'Score: ~92/120 (Strong Pass, Major OSS PRs, High Concurrency)',
-    githubUser: 'alexrivera-dev',
+    githubUser: '',
     roleId: 'backend_engineer',
     content: `# Alex Rivera
 San Francisco, CA • alex.rivera@example.com • github.com/alexrivera-dev • linkedin.com/in/alexrivera-eng
@@ -59,7 +59,7 @@ B.S. in Computer Science • University of California, Berkeley (2015 - 2019)
     name: 'Jordan Chen (Mid Full Stack Engineer)',
     title: 'Full Stack Engineer • 3 Yrs Exp • React, Node.js & Postgres',
     expectedScoreProfile: 'Score: ~72/120 (Pass / Meets Bar, Good Projects, Needs OSS boost)',
-    githubUser: 'jordanchen',
+    githubUser: '',
     roleId: 'fullstack_engineer',
     content: `# Jordan Chen
 Seattle, WA • jordan.chen@example.com • github.com/jordanchen • linkedin.com/in/jordanchen-swe
@@ -99,7 +99,7 @@ B.S. in Software Engineering • University of Washington (2017 - 2021)
     name: 'Taylor Brooks (Junior / New Grad)',
     title: 'Associate Developer • Academic Projects • Needs ATS & Metric Optimization',
     expectedScoreProfile: 'Score: ~48/120 (Leaning Reject, Buzzwords without metrics, 0 OSS)',
-    githubUser: 'taylorbrooks',
+    githubUser: '',
     roleId: 'backend_engineer',
     content: `# Taylor Brooks
 Austin, TX • taylor.brooks@example.com • github.com/taylorbrooks

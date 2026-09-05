@@ -100,14 +100,14 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({ categories
               }`}
             >
               <div className="flex items-center justify-between gap-1 mb-2">
-                <span className={`flex items-center gap-2 font-black text-xs uppercase tracking-wider truncate ${isSelected ? 'text-black' : 'text-white'}`}>
+                <span className={`flex items-center gap-2 font-black text-xs uppercase tracking-wider truncate ${isSelected ? 'text-black font-black' : 'text-white'}`}>
                   {cat.title.split(' ')[0]}
                 </span>
                 <span className={`font-mono text-sm font-black ${isSelected ? 'text-black' : 'text-white'}`}>
                   {cat.data.score}/{cat.data.maxScore}
                 </span>
               </div>
-              <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest opacity-80 font-mono">
+              <div className={`flex items-center justify-between text-[10px] font-bold uppercase tracking-widest font-mono ${isSelected ? 'text-black/80' : 'text-white/60'}`}>
                 <span>{cat.data.rating}</span>
                 <span>{Math.round((cat.data.score / cat.data.maxScore) * 100)}%</span>
               </div>
@@ -149,7 +149,7 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({ categories
 
         {/* Reasoning */}
         <div className="py-6">
-          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40 mb-2 flex items-center gap-1.5">
+          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/50 mb-2 flex items-center gap-1.5">
             <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
             Evaluator Analysis & Rubric Justification
           </p>

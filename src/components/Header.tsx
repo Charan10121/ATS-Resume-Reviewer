@@ -1,20 +1,26 @@
 import React from 'react';
-import { GitPullRequest, ExternalLink, BookOpen, ShieldCheck } from 'lucide-react';
+import { GitPullRequest, ExternalLink, BookOpen } from 'lucide-react';
 
 interface HeaderProps {
   onShowRubricModal: () => void;
+  onHomeClick?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onShowRubricModal }) => {
+export const Header: React.FC<HeaderProps> = ({ onShowRubricModal, onHomeClick }) => {
   return (
     <header className="h-20 flex items-center justify-between px-4 sm:px-8 lg:px-10 border-b border-white/10 bg-[#0A0A0A] text-white sticky top-0 z-40">
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shrink-0">
+      <button
+        type="button"
+        onClick={onHomeClick}
+        className="flex items-center gap-3 text-left cursor-pointer group focus:outline-none"
+        title="Go to Home Screen"
+      >
+        <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center shrink-0 group-hover:bg-white/90 transition-colors">
           <div className="w-4 h-4 border-2 border-black rotate-45" />
         </div>
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-lg sm:text-xl font-black tracking-tighter uppercase text-white">
+            <span className="text-lg sm:text-xl font-black tracking-tighter uppercase text-white group-hover:text-white/80 transition-colors">
               HiringAgent.ai
             </span>
             <span className="hidden sm:inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-2 py-0.5 border border-white/20 rounded-full text-white/70">
@@ -25,20 +31,14 @@ export const Header: React.FC<HeaderProps> = ({ onShowRubricModal }) => {
             interviewstreet/hiring-agent evaluation engine
           </p>
         </div>
-      </div>
+      </button>
 
       <div className="flex items-center gap-4 sm:gap-6">
-        <div className="hidden lg:flex items-center gap-6 text-xs font-bold tracking-[0.2em] uppercase">
-          <span className="text-white/40 hover:text-white/70 transition-colors cursor-default">Open Source</span>
-          <span className="text-white/40 hover:text-white/70 transition-colors cursor-default">Projects</span>
-          <span className="text-white">Review</span>
-        </div>
-
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             id="view-rubric-btn"
             onClick={onShowRubricModal}
-            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 text-xs font-black tracking-[0.15em] uppercase text-white bg-white/10 hover:bg-white hover:text-black border border-white/20 transition-all rounded-sm"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 text-xs font-black tracking-[0.15em] uppercase text-white bg-white/10 hover:bg-white hover:text-black border border-white/20 transition-all rounded-sm cursor-pointer"
           >
             <BookOpen className="w-3.5 h-3.5" />
             <span className="hidden xs:inline">Rubric</span>
@@ -60,3 +60,4 @@ export const Header: React.FC<HeaderProps> = ({ onShowRubricModal }) => {
     </header>
   );
 };
+
