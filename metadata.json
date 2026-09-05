@@ -1,0 +1,6 @@
+{
+  "name": "Hiring Agent ATS Resume Reviewer",
+  "description": "Test and evaluate your resume using the InterviewStreet / HackerRank Hiring Agent ATS rubric, featuring automated scoring across Open Source, Self Projects, Production Experience, Technical Skills, bonuses, deductions, and GitHub enrichment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
